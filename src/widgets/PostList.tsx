@@ -6,6 +6,7 @@ import { useGetPostsQuery } from '../features/redux/postsApi';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../shared/Button/Button';
 import './PostList.css';
+import { useCallback } from 'react';
 
 function RenderRow(props: ListChildComponentProps) {
   const { data } = useGetPostsQuery({});
@@ -13,16 +14,20 @@ function RenderRow(props: ListChildComponentProps) {
   const { index, style } = props;
 
   return (
-    <ListItem className="post__card" key={index} style={style}>
-      <ListItemText primary={data?.[index].id + '.  ' + data?.[index].title} />
-      <ListItemText
-        secondary={'DESCRIPTION: ' + data?.[index].body.slice(0, 50) + '...'}
-      />
-      <Button
-        name={'Подробнее'}
-        action={() => navigate(`/posts/${data?.[index].id}`)}
-      />
-    </ListItem>
+    <ul>
+      <ListItem className="post__card" key={index} style={style}>
+        <ListItemText
+          primary={data?.[index].id + '.  ' + data?.[index].title}
+        />
+        <ListItemText
+          secondary={'DESCRIPTION: ' + data?.[index].body.slice(0, 50) + '...'}
+        />
+        <Button
+          name={'Подробнее'}
+          action={() => navigate(`/posts/${data?.[index].id}`)}
+        />
+      </ListItem>
+    </ul>
   );
 }
 
