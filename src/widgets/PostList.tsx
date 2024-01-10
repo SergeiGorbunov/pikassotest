@@ -6,7 +6,6 @@ import { useGetPostsQuery } from '../features/redux/postsApi';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../shared/Button/Button';
 import './PostList.css';
-import { useCallback } from 'react';
 
 function RenderRow(props: ListChildComponentProps) {
   const { data } = useGetPostsQuery({});
