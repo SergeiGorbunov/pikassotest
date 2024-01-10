@@ -5,6 +5,7 @@ import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import { useGetPostsQuery } from '../features/redux/postsApi';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../shared/Button/Button';
+import './PostList.css';
 
 function RenderRow(props: ListChildComponentProps) {
   const { data } = useGetPostsQuery({});
@@ -12,9 +13,11 @@ function RenderRow(props: ListChildComponentProps) {
   const { index, style } = props;
 
   return (
-    <ListItem key={index} style={style}>
+    <ListItem className="post__card" key={index} style={style}>
       <ListItemText primary={data?.[index].id + '.  ' + data?.[index].title} />
-      <div>{data?.[index].body.slice(0, 50)}...</div>{' '}
+      <ListItemText
+        secondary={'DESCRIPTION: ' + data?.[index].body.slice(0, 50) + '...'}
+      />
       <Button
         name={'Подробнее'}
         action={() => navigate(`/posts/${data?.[index].id}`)}
@@ -36,8 +39,8 @@ export function PostList() {
       }}
     >
       <FixedSizeList
-        height={600}
-        width={960}
+        height={window.innerHeight}
+        width={window.innerWidth - 15}
         itemSize={46}
         itemCount={data?.length}
         overscanCount={5}
