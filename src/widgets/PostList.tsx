@@ -1,6 +1,5 @@
 import Box from '@mui/material/Box';
 import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import { FixedSizeList, ListChildComponentProps } from 'react-window';
 import { useGetPostsQuery } from '../features/redux/postsApi';
