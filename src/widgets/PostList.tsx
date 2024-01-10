@@ -13,7 +13,8 @@ function RenderRow(props: ListChildComponentProps) {
 
   return (
     <ListItem key={index} style={style}>
-      <ListItemText primary={data?.[index].title} />
+      <ListItemText primary={data?.[index].id + '.  ' + data?.[index].title} />
+      <div>{data?.[index].body.slice(0, 50)}...</div>{' '}
       <Button
         name={'Подробнее'}
         action={() => navigate(`/posts/${data?.[index].id}`)}
